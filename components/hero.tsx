@@ -1,10 +1,11 @@
 import React from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
+import { Customers } from "./customers";
 
 export const Hero = () => {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="w-full h-full flex flex-col items-center justify-center gap-11">
       <div className="flex items-center justify-center gap-8">
         <div className="relative">
           <Image src="/icons/path-l.svg" alt="مسیر" width={335} height={448} />
@@ -62,8 +63,9 @@ export const Hero = () => {
           />
         </div>
       </div>
-
-      <div></div>
+      <div>
+        <Customers />
+      </div>
     </div>
   );
 };
