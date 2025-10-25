@@ -3,26 +3,50 @@
 
 @font-face {
   font-family: "yekan";
-  src: url("/fonts/yekan-bakh/YekanBakh-Light.woff2");
+  src: url("/fonts/yekan-bakh/original/YekanBakh-Light.woff2");
   font-weight: 300;
 }
 
 @font-face {
   font-family: "yekan";
-  src: url("/fonts/yekan-bakh/YekanBakh-Regular.woff2");
+  src: url("/fonts/yekan-bakh/original/YekanBakh-Regular.woff2");
   font-weight: 400;
 }
 
 @font-face {
   font-family: "yekan";
-  src: url("/fonts/yekan-bakh/YekanBakh-Bold.woff2");
+  src: url("/fonts/yekan-bakh/original/YekanBakh-Bold.woff2");
   font-weight: 500;
 }
 
 @font-face {
   font-family: "yekan";
-  src: url("/fonts/yekan-bakh/YekanBakh-ExtraBold.woff2");
+  src: url("/fonts/yekan-bakh/original/YekanBakh-ExtraBold.woff2");
   font-weight: 600;
+}
+
+@font-face {
+  font-family: "yekan-fanum";
+  src: url("/fonts/yekan-bakh/faNum/YekanBakhFaNum-Regular.woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "yekan-fanum";
+  src: url("/fonts/yekan-bakh/faNum/YekanBakhFaNum-Bold.woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "peyda";
+  src: url("/fonts/peyda/PeydaWeb-Bold.woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "peyda";
+  src: url("/fonts/peyda/PeydaWeb-Regular.woff2");
+  font-weight: 400;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -105,6 +129,8 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   --font-yekan: yekan, Arial;
+  --font-yekan-fanum: "yekan-fanum";
+  --font-peyda: peyda;
 }
 
 .dark {

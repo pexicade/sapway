@@ -1,6 +1,7 @@
 import { Hero } from "@/components/hero";
 import { Introduction } from "@/components/introduction";
 import Navbar from "@/components/navbar";
+import Slider from "@/components/slider";
 
 export default function Home() {
   return (
@@ -14,8 +15,11 @@ export default function Home() {
           <Hero />
         </div>
       </div>
-      <div className="relative w-full -mt-[71px]">
-        <Introduction />
+      <div className="flex flex-col ss:gap-[72px]">
+        <div className="relative w-full -mt-[71px]">
+          <Introduction />
+        </div>
+        <Slider />
       </div>
     </div>
   );

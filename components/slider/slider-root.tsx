@@ -1,0 +1,119 @@
+"use client";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+
+export interface Slide {
+  index: number;
+  url: string;
+  children?: React.ReactNode;
+}
+
+interface Props {
+  slides: Slide[];
+}
+
+export const SliderRoot = ({ slides }: Props) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [parentWidth, setParentWidth] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (containerRef.current) {
+        setParentWidth(containerRef.current.offsetWidth);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // The docs for how this works is placed after this function definition
+  return (
+    <div
+      ref={containerRef}
+      className="mx-6 sm:mx-8 md:mx-[60px] lg:mx-[78.05px] flex flex-col gap-4"
+    >
+      <div className="relative h-full flex items-center justify-center transition-transform duration-500 ease-in-out">
+        <div
+          className="h-full overflow-x-hidden"
+          style={{ width: parentWidth }}
+        >
+          <div
+            className="flex h-full items-center justify-center"
+            style={{
+              width: parentWidth * slides.length,
+              transform: `translateX(${-(currentIndex * parentWidth)}px)`,
+            }}
+          >
+            {slides.map((slide, index) => (
+              <div
+                key={`${slide.url}_${index}`}
+                className="relative aspect-1285/368 w-full rounded-xl"
+              >
+                <Image
+                  src={slide.url}
+                  alt="alt"
+                  fill
+                  className="object-contain"
+                />
+                {slide.children}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="flex justify-center items-center gap-[9px]">
+        {slides.map((slide) => (
+          <div
+            key={`${slide.url}_${slide.index}`}
+            className={`w-3 h-3 rounded-full ${
+              currentIndex === slide.index ? "bg-[#386bf6]" : "bg-[#d9d9d9]"
+            }`}
+            onClick={() => setCurrentIndex(slide.index)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+/*
+Slider Structure Overview:
+--------------------------
+<div> (outer viewport)
+  <div> (inner track)
+    <div> (slide)
+      <Image fill object-contain />
+    </div>
+  </div>
+</div>
+
+Explanation:
+1. Outer viewport:
+   - width = parentWidth → defines how much of the track is visible at once (usually one slide)
+   - overflow-x-hidden → hides slides that are outside the current view
+
+2. Inner track:
+   - display: flex → arranges slides horizontally
+   - width = parentWidth * slides.length → total width for all slides in a row
+   - transform: translateX(-currentIndex * parentWidth) → moves the entire track left/right to show the current slide
+   - Optional: add a transition for smooth sliding (e.g., "transition-transform duration-500 ease-in-out")
+
+3. Slide container:
+   - relative → required so that the <Image fill> works correctly
+   - aspect-[1285/368] → enforces proportional height based on width
+   - w-full → makes each slide span the full width of the viewport
+   - rounded-xl → purely visual
+
+4. <Image> (Next.js):
+   - fill → expands to fill the parent container (requires the parent to be positioned)
+   - object-contain → scales image up or down proportionally to fit within the container
+   - Combined with the aspect ratio, this ensures the image both upscales and downscales responsively without distortion.
+
+Result:
+- All slides sit horizontally on a long track.
+- The track shifts left by one slide’s width each time currentIndex changes.
+- Only one full slide is visible at a time inside the viewport.
+*/
