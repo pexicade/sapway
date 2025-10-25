@@ -9,7 +9,7 @@ const Navbar = () => {
         className="flex ss:hidden items-center justify-between bg-white w-full h-[65px]"
         dir="rtl"
       >
-        <div>
+        <div className="mr-6 my-2">
           <Image
             src="/icon.svg"
             alt="لوگوی آمار پیشرو"
@@ -17,7 +17,7 @@ const Navbar = () => {
             height={49}
           />
         </div>
-        <div className="ml-[27px] my-[26.5px]">
+        <div className="ml-6 my-[20.5px]">
           <Image
             src="/icons/hamburger-menu.svg"
             alt="آیکون منوی نوار ناوش"
