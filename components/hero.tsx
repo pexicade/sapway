@@ -5,7 +5,7 @@ import { Customers } from "./customers";
 
 export const Hero = () => {
   return (
-    <div className="flex flex-col gap-9">
+    <div className="flex flex-col gap-12">
       {/* Vertical layout */}
       <div className="flex min-[600]:hidden flex-col items-center gap-11">
         <div>

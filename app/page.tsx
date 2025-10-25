@@ -5,7 +5,8 @@ import Navbar from "@/components/navbar";
 export default function Home() {
   return (
     <div className="w-full">
-      <div className="h-[887px] w-full bg-linear-to-r from-[#e2eefe] to-[#f8ceba]">
+      {/* we don't need flex and flex-col because the divs are natuarlly block elements. */}
+      <div className="relative h-auto w-full pb-28 bg-linear-to-r from-[#e2eefe] to-[#f8ceba]">
         <div className="pt-0 ss:pt-[23.5px]">
           <Navbar />
         </div>
@@ -13,7 +14,11 @@ export default function Home() {
           <Hero />
         </div>
       </div>
-      <div>{/* <Introduction /> */}</div>
+      <div className="relative w-full flex flex-col gap-12 ss:gap-18">
+        <div className="relative -mt-[71px]">
+          <Introduction />
+        </div>
+      </div>
     </div>
   );
 }
