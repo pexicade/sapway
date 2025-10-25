@@ -4,13 +4,13 @@ import Navbar from "@/components/navbar";
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <div className="w-full pb-5">
       {/* we don't need flex and flex-col because the divs are natuarlly block elements. */}
       <div className="relative h-auto w-full pb-28 bg-linear-to-r from-[#e2eefe] to-[#f8ceba]">
         <div className="pt-0 ss:pt-[23.5px]">
           <Navbar />
         </div>
-        <div className="px-6 sm:px-[69px] md:px-[74px] lg:px-[88px] mt-0 min-[600px]:mt-[106px]">
+        <div className="px-6 sm:px-8 md:px-[60px] lg:px-[78.5px] mt-0 min-[600px]:mt-[106px]">
           <Hero />
         </div>
       </div>
