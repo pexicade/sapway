@@ -14,10 +14,8 @@ export default function Home() {
           <Hero />
         </div>
       </div>
-      <div className="relative w-full flex flex-col gap-12 ss:gap-18">
-        <div className="relative -mt-[71px]">
-          <Introduction />
-        </div>
+      <div className="relative w-full -mt-[71px]">
+        <Introduction />
       </div>
     </div>
   );
