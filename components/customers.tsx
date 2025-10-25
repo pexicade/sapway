@@ -13,14 +13,15 @@ const customers_icon_name = [
 
 export const Customers = () => {
   return (
-    <div className="flex items-center justify-center gap-[26px]">
+    <div className="flex items-center justify-center gap-x-[clamp(1rem,0.583rem+2.083vw,1.625rem)] gap-y-1 flex-wrap relative">
       {customers_icon_name.map((e) => (
         <Image
           key={e[0]}
           src={`/icons/${e[0]}.svg`}
           alt={`آیکون ${e[1]}`}
-          width={72}
-          height={72}
+          width={48}
+          height={48}
+          className="w-[clamp(3rem,2.016rem+4.918vw,4.5rem)] aspect-square"
         />
       ))}
     </div>
