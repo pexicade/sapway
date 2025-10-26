@@ -1,28 +1,52 @@
+"use client";
+
 import { Slide, SliderRoot } from "@/components/slider/slider-root";
 import { Item1 } from "@/components/slider/item-1";
 import { Item2 } from "@/components/slider/item-2";
 import { Item3 } from "@/components/slider/item-3";
+import { useWindowSize } from "@/hooks/window-size";
 
 const slides: Slide[] = [
   {
-    url: "/images/slider/1.png",
+    url: {
+      big: "/images/slider/1.png",
+      small: "/images/slider/1-small.png",
+    },
     index: 0,
-    children: <Item1 />,
+    // children: <Item1 size="small" />,
   },
   {
-    url: "/images/slider/2.png",
+    url: {
+      big: "/images/slider/2.png",
+      small: "/images/slider/2-small.png",
+    },
     index: 1,
-    children: <Item2 />,
+    // children: <Item2 />,
   },
   {
-    url: "/images/slider/3.png",
+    url: {
+      big: "/images/slider/3.png",
+      small: "/images/slider/3-small.png",
+    },
     index: 2,
-    children: <Item3 />,
+    // children: <Item3 />,
   },
 ];
 
 const Slider = () => {
-  return <SliderRoot slides={slides} />;
+  const { windowSmallness } = useWindowSize();
+
+  const item1 = <Item1 smallness={windowSmallness} />;
+  const item2 = <Item2 smallness={windowSmallness} />;
+  const item3 = <Item3 smallness={windowSmallness} />;
+
+  const items = [item1, item2, item3];
+
+  const newSlides = slides.map((slide, index) => {
+    return { ...slide, children: items[index] };
+  });
+
+  return <SliderRoot slides={newSlides} />;
 };
 
 export default Slider;

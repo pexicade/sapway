@@ -15,7 +15,7 @@ export default function Home() {
           <Hero />
         </div>
       </div>
-      <div className="flex flex-col ss:gap-[72px]">
+      <div className="flex flex-col gap-12 ss:gap-[72px]">
         <div className="relative w-full -mt-[71px]">
           <Introduction />
         </div>

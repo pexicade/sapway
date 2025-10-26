@@ -3,9 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
+interface ImageUrl {
+  big: string;
+  small: string;
+}
+
 export interface Slide {
   index: number;
-  url: string;
+  url: ImageUrl;
   children?: React.ReactNode;
 }
 
@@ -17,6 +22,7 @@ export const SliderRoot = ({ slides }: Props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [parentWidth, setParentWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [windowWidth, setWindowWidth] = useState(0);
 
   // For swipe tracking
   const startX = useRef<number | null>(null);
@@ -28,11 +34,12 @@ export const SliderRoot = ({ slides }: Props) => {
       if (containerRef.current) {
         setParentWidth(containerRef.current.offsetWidth);
       }
+      setWindowWidth(window.innerWidth);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [windowWidth]);
 
   // Handle swipe start
   const handlePointerDown = (e: React.PointerEvent) => {
@@ -93,10 +100,10 @@ export const SliderRoot = ({ slides }: Props) => {
             {slides.map((slide, index) => (
               <div
                 key={`${slide.url}_${index}`}
-                className="relative aspect-1285/368 w-full rounded-xl"
+                className="relative aspect-[342/205] ss:aspect-1285/368 w-full rounded-xl"
               >
                 <Image
-                  src={slide.url}
+                  src={windowWidth > 600 ? slide.url.big : slide.url.small}
                   alt="alt"
                   fill
                   className="object-contain pointer-events-none"
