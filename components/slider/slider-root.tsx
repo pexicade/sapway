@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
@@ -14,9 +15,13 @@ interface Props {
 
 export const SliderRoot = ({ slides }: Props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const [parentWidth, setParentWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // For swipe tracking
+  const startX = useRef<number | null>(null);
+  const deltaX = useRef<number>(0);
+  const isDragging = useRef<boolean>(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -29,19 +34,57 @@ export const SliderRoot = ({ slides }: Props) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // The docs for how this works is placed after this function definition
+  // Handle swipe start
+  const handlePointerDown = (e: React.PointerEvent) => {
+    startX.current = e.clientX;
+    isDragging.current = true;
+  };
+
+  // Handle swipe move
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!isDragging.current || startX.current === null) return;
+    deltaX.current = e.clientX - startX.current;
+  };
+
+  // Handle swipe end
+  const handlePointerUp = () => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+
+    const threshold = 12; // resulted from trial and error
+
+    if (deltaX.current > threshold && currentIndex > 0) {
+      // Swiped right → go to previous
+      setCurrentIndex(currentIndex - 1);
+    } else if (
+      deltaX.current < -threshold &&
+      currentIndex < slides.length - 1
+    ) {
+      // Swiped left → go to next
+      setCurrentIndex(currentIndex + 1);
+    }
+
+    // Reset
+    startX.current = null;
+    deltaX.current = 0;
+  };
+
   return (
     <div
       ref={containerRef}
-      className="mx-6 sm:mx-8 md:mx-[60px] lg:mx-[78.05px] flex flex-col gap-4"
+      className="mx-6 sm:mx-8 md:mx-[60px] lg:mx-[78.05px] flex flex-col gap-4 select-none"
     >
-      <div className="relative h-full flex items-center justify-center transition-transform duration-500 ease-in-out">
+      <div className="relative h-full flex items-center justify-center">
         <div
           className="h-full overflow-x-hidden"
           style={{ width: parentWidth }}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerLeave={handlePointerUp}
         >
           <div
-            className="flex h-full items-center justify-center"
+            className="flex h-full items-center justify-center transition-transform duration-600 ease-in-out overflow-hidden"
             style={{
               width: parentWidth * slides.length,
               transform: `translateX(${-(currentIndex * parentWidth)}px)`,
@@ -56,7 +99,7 @@ export const SliderRoot = ({ slides }: Props) => {
                   src={slide.url}
                   alt="alt"
                   fill
-                  className="object-contain"
+                  className="object-contain pointer-events-none"
                 />
                 {slide.children}
               </div>
@@ -64,11 +107,12 @@ export const SliderRoot = ({ slides }: Props) => {
           </div>
         </div>
       </div>
+
       <div className="flex justify-center items-center gap-[9px]">
         {slides.map((slide) => (
           <div
             key={`${slide.url}_${slide.index}`}
-            className={`w-3 h-3 rounded-full ${
+            className={`w-3 h-3 rounded-full cursor-pointer transition-colors ${
               currentIndex === slide.index ? "bg-[#386bf6]" : "bg-[#d9d9d9]"
             }`}
             onClick={() => setCurrentIndex(slide.index)}
