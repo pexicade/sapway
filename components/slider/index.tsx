@@ -13,7 +13,6 @@ const slides: Slide[] = [
       small: "/images/slider/1-small.png",
     },
     index: 0,
-    // children: <Item1 size="small" />,
   },
   {
     url: {
@@ -21,7 +20,6 @@ const slides: Slide[] = [
       small: "/images/slider/2-small.png",
     },
     index: 1,
-    // children: <Item2 />,
   },
   {
     url: {
@@ -29,7 +27,6 @@ const slides: Slide[] = [
       small: "/images/slider/3-small.png",
     },
     index: 2,
-    // children: <Item3 />,
   },
 ];
 
