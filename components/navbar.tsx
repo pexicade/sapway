@@ -2,12 +2,41 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
 
+interface navItem {
+  href: string;
+  name: string;
+}
+
+const navItems: navItem[] = [
+  {
+    href: "#",
+    name: "ویژگی‌ها",
+  },
+  {
+    href: "#",
+    name: "آموزش",
+  },
+  {
+    href: "#",
+    name: "سؤالات متداول",
+  },
+  {
+    href: "#",
+    name: "تماس با ما",
+  },
+  {
+    href: "#",
+    name: "شرکت‌های حمل‌ونقل",
+  },
+];
+
 const Navbar = () => {
   return (
     <div className="flex items-center justify-center">
       <nav
         className="flex ss:hidden items-center justify-between bg-white w-full h-[65px]"
         dir="rtl"
+        aria-label="Navigation bar"
       >
         <div className="mr-6 my-2">
           <Image
@@ -42,21 +71,11 @@ const Navbar = () => {
               height={49}
             />
           </Link>
-          <Link href="#" className="my-3.5 p-0">
-            ویژگی‌ها
-          </Link>
-          <Link href="#" className="my-3.5 p-0">
-            آموزش
-          </Link>
-          <Link href="#" className="my-3.5 p-0">
-            سؤالات متداول
-          </Link>
-          <Link href="#" className="my-3.5 p-0">
-            تماس با ما
-          </Link>
-          <Link href="#" className="my-3.5 p-0">
-            شرکت‌های حمل‌ونقل
-          </Link>
+          {navItems.map((item, index) => (
+            <Link key={index} href={item.href} className="my-3.5 p-0">
+              {item.name}
+            </Link>
+          ))}
         </div>
         <div className="ml-6 my-[18px] md:my-[22px] flex items-center gap-2 md:gap-3">
           <Button

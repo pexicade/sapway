@@ -31,11 +31,11 @@ const slides: Slide[] = [
 ];
 
 const Slider = () => {
-  const { windowSmallness } = useWindowSize();
+  const { windowSizeType } = useWindowSize();
 
-  const item1 = <Item1 smallness={windowSmallness} />;
-  const item2 = <Item2 smallness={windowSmallness} />;
-  const item3 = <Item3 smallness={windowSmallness} />;
+  const item1 = <Item1 smallness={windowSizeType} />;
+  const item2 = <Item2 smallness={windowSizeType} />;
+  const item3 = <Item3 smallness={windowSizeType} />;
 
   const items = [item1, item2, item3];
 
