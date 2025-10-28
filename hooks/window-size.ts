@@ -10,19 +10,15 @@ export const useWindowSize = () => {
     const handleResize = () => {
       const width = window.innerWidth;
       setWindowWidth(width);
-      console.log({ width: windowWidth });
-
-      if (width > 600 && windowSmallness === "small") {
-        setWindowSmallness("big");
-      }
-
-      if (width <= 600 && windowSmallness === "big") {
-        setWindowSmallness("small");
-      }
+      setWindowSmallness(width > 600 ? "big" : "small");
     };
+
     handleResize();
+
     window.addEventListener("resize", handleResize);
-  }, [windowSmallness, windowWidth]);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return { windowSmallness, windowWidth };
 };
