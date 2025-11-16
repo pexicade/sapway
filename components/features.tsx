@@ -144,15 +144,15 @@ export const Features = () => {
         ویژگی‌ها
       </h2>
       <div
-        className="mt-[17px] flex flex-col gap-4 items-center justify-center"
+        className="mt-[17px] flex flex-col gap-10 items-center justify-center"
         dir="rtl"
       >
-        <div className="flex flex-wrap items-center justify-center gap-3">
+        <div className="flex flex-wrap items-center justify-center gap-3 w-full">
           {features.map((feature) => (
             <Button
               key={feature.name}
               // className={`w-[251px] h-[45px] transition-colors duration-500 font-normal text-[16px] font-(family-name:--font-yekan-fanum)`}
-              className="w-1/4 sm:w-1/2 px-[clamp(0.75rem,1vw,1.25rem)] py-[clamp(0.5rem,0.8vw,1rem)] text-[clamp(0.9rem,1.2vw,1.3rem)]
+              className="w-[251px] h-[45px] px-[clamp(0.75rem,1vw,1.25rem)] py-[clamp(0.5rem,0.8vw,1rem)] text-[clamp(0.9rem,1.2vw,1.3rem)]
                 transition-colors duration-500 font-normal font-(family-name:--font-yekan-fanum)
               "
               variant={`${
@@ -182,7 +182,7 @@ export const Features = () => {
                     width={98}
                     height={98}
                   />
-                  <span>{icon.text}</span>
+                  <span className="text-center"> {icon.text}</span>
                 </div>
               ))}
             </div>
