@@ -92,83 +92,81 @@ const featureIcons: FeatureIcons[] = [
     ],
   },
 ];
-
 export const Features = () => {
   const [activeFeature, setActiveFeature] = useState("clients");
 
   return (
-    <div
-      className="
-        bg-linear-to-r from-[#e2eefe] to-[#f8ceba]
-        flex flex-col items-center justify-center
-        w-full
-        px-6 py-16
-        md:py-20
-      "
-    >
+    <div className="bg-linear-to-r from-[#e2eefe] to-[#f8ceba] flex flex-col items-center gap-0 justify-center min-h-[420px]">
       <h2
+        className="mt-12 sm:mt-10 lg:mt-0   text-[32px] md:text-[32px] font-bold font-(family-name:--font-yekan-fanum)"
         dir="rtl"
-        className="
-          text-[28px] sm:text-[32px] font-bold
-          font-(family-name:--font-yekan-fanum)
-          text-center
-        "
       >
         ویژگی‌ها
       </h2>
 
-      {/* Buttons */}
       <div
+        className="mt-[17px] flex flex-col gap-10 items-center justify-center w-full"
         dir="rtl"
-        className="mt-10 flex flex-wrap items-center justify-center gap-3 w-full max-w-4xl"
       >
-        {features.map((feature) => (
-          <Button
-            key={feature.name}
-            onClick={() => setActiveFeature(feature.name)}
-            variant={activeFeature === feature.name ? "default" : "outline"}
-            className="
-              h-[45px]
-              px-6
-              w-full sm:w-auto
-              text-[15px] sm:text-[16px]
-              font-normal
-              transition-colors duration-500
-              font-(family-name:--font-yekan-fanum)
-            "
-          >
-            {feature.btnText}
-          </Button>
-        ))}
-      </div>
+        {/* Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-3 w-full px-4">
+          {features.map((feature) => (
+            <Button
+              key={feature.name}
+              className="
+                w-[251px] h-[45px]
+                transition-colors duration-500 
+                font-normal text-[16px] 
+                font-(family-name:--font-yekan-fanum)
+              "
+              variant={activeFeature === feature.name ? "default" : "outline"}
+              onClick={() => setActiveFeature(feature.name)}
+            >
+              {feature.btnText}
+            </Button>
+          ))}
+        </div>
 
-      {/* Icons */}
-      <div className="mt-12 w-full flex justify-center">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-10">
-          {featureIcons
-            .find((f) => f.name === activeFeature)
-            ?.icons.map((icon, index) => (
-              <div
-                key={index}
-                className="
-                  flex flex-col items-center justify-center
-                  gap-3
-                  w-[120px] sm:w-[140px] md:w-40
-                  text-center
-                "
-              >
-                <Image
-                  src={icon.icon}
-                  alt={`آیکون ${icon.text}`}
-                  width={98}
-                  height={98}
-                  className="w-[60px] sm:w-[70px] md:w-[90px] h-auto"
-                />
-                <span className="text-[13px] sm:text-[14px] md:text-[15px] leading-6">
-                  {icon.text}
-                </span>
-              </div>
-            ))}
+        {/* Icons */}
+        <div className="mt-12 w-full flex justify-center mb-10 sm:mb-7 lg:mb-0">
+          {featureIcons.map((featureIcon) => (
+            <div
+              key={featureIcon.name}
+              className={`${
+                activeFeature === featureIcon.name ? "flex" : "hidden"
+              } 
+                 flex-wrap justify-center
+                 gap-x-4 gap-y-6 sm:gap-x-6 sm:gap-y-8 md:gap-x-8 md:gap-y-10 lg:gap-x-12 lg:gap-y-12
+                 w-full max-w-[1200px]`}
+            >
+              {featureIcon.icons.map((icon, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center justify-center gap-2"
+                  style={{ flex: "0 1 auto" }}
+                >
+                  <div
+                    className="
+              flex items-center justify-center
+              w-[90px] h-[90px] sm:w-20 sm:h-20 md:w-[98px] md:h-[98px] lg:w-[110px] lg:h-[110px]
+              max-w-full
+            "
+                  >
+                    <Image
+                      src={icon.icon}
+                      alt={icon.text}
+                      width={110}
+                      height={110}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <span className="text-[13px] sm:text-[14px] md:text-[15px] text-center leading-6">
+                    {icon.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </div>
