@@ -31,22 +31,10 @@ function getIconPath(category: Category, iconName: string) {
 }
 
 const features: Feature[] = [
-  {
-    name: "clients",
-    btnText: "خدمات‌گیرندگان",
-  },
-  {
-    name: "common-carriers",
-    btnText: "شرکت‌های حمل‌ونقل",
-  },
-  {
-    name: "passengers",
-    btnText: "مسافران",
-  },
-  {
-    name: "drivers",
-    btnText: "رانندگان",
-  },
+  { name: "clients", btnText: "خدمات‌گیرندگان" },
+  { name: "common-carriers", btnText: "شرکت‌های حمل‌ونقل" },
+  { name: "passengers", btnText: "مسافران" },
+  { name: "drivers", btnText: "رانندگان" },
 ];
 
 const featureIcons: FeatureIcons[] = [
@@ -61,14 +49,8 @@ const featureIcons: FeatureIcons[] = [
         icon: getIconPath("clients", "location-pin-2"),
         text: "ایستگاه‌های بهینه",
       },
-      {
-        icon: getIconPath("common", "car"),
-        text: "پیشنهاد خودرو",
-      },
-      {
-        icon: getIconPath("common", "flag"),
-        text: "گزارش‌دهی آنلاین",
-      },
+      { icon: getIconPath("common", "car"), text: "پیشنهاد خودرو" },
+      { icon: getIconPath("common", "flag"), text: "گزارش‌دهی آنلاین" },
       {
         icon: getIconPath("clients", "truck-check"),
         text: "انتخاب آسان شرکت حمل‌ونقل",
@@ -82,14 +64,8 @@ const featureIcons: FeatureIcons[] = [
         icon: getIconPath("common-carriers", "badge"),
         text: "معرفی به مشتری هدف",
       },
-      {
-        icon: getIconPath("common", "flag"),
-        text: "گزارش‌دهی آنلاین",
-      },
-      {
-        icon: getIconPath("common", "car"),
-        text: "مدیریت رانندگان",
-      },
+      { icon: getIconPath("common", "flag"), text: "گزارش‌دهی آنلاین" },
+      { icon: getIconPath("common", "car"), text: "مدیریت رانندگان" },
       {
         icon: getIconPath("common-carriers", "sign-post"),
         text: "کنترل آسان جابه‌جایی",
@@ -99,18 +75,9 @@ const featureIcons: FeatureIcons[] = [
   {
     name: "passengers",
     icons: [
-      {
-        icon: getIconPath("passengers", "shield-check"),
-        text: "امنیت بالا",
-      },
-      {
-        icon: getIconPath("passengers", "binoculars"),
-        text: "پیگیری لحظه‌ای",
-      },
-      {
-        icon: getIconPath("common", "comment-dots"),
-        text: "ثبت نظر",
-      },
+      { icon: getIconPath("passengers", "shield-check"), text: "امنیت بالا" },
+      { icon: getIconPath("passengers", "binoculars"), text: "پیگیری لحظه‌ای" },
+      { icon: getIconPath("common", "comment-dots"), text: "ثبت نظر" },
     ],
   },
   {
@@ -120,14 +87,8 @@ const featureIcons: FeatureIcons[] = [
         icon: getIconPath("drivers", "route-destination"),
         text: "مسیریابی هوشمند",
       },
-      {
-        icon: getIconPath("drivers", "trolly-bag"),
-        text: "لیست مسافران",
-      },
-      {
-        icon: getIconPath("common", "comment-dots"),
-        text: "ثبت نظر",
-      },
+      { icon: getIconPath("drivers", "trolly-bag"), text: "لیست مسافران" },
+      { icon: getIconPath("common", "comment-dots"), text: "ثبت نظر" },
     ],
   },
 ];
@@ -136,57 +97,78 @@ export const Features = () => {
   const [activeFeature, setActiveFeature] = useState("clients");
 
   return (
-    <div className="bg-linear-to-r from-[#e2eefe] to-[#f8ceba] flex flex-col items-center gap-0 justify-center h-[420px]">
+    <div
+      className="
+        bg-linear-to-r from-[#e2eefe] to-[#f8ceba]
+        flex flex-col items-center justify-center
+        w-full
+        px-6 py-16
+        md:py-20
+      "
+    >
       <h2
-        className="mt-16 text-[32px] font-bold font-(family-name:--font-yekan-fanum)"
         dir="rtl"
+        className="
+          text-[28px] sm:text-[32px] font-bold
+          font-(family-name:--font-yekan-fanum)
+          text-center
+        "
       >
         ویژگی‌ها
       </h2>
+
+      {/* Buttons */}
       <div
-        className="mt-[17px] flex flex-col gap-10 items-center justify-center"
         dir="rtl"
+        className="mt-10 flex flex-wrap items-center justify-center gap-3 w-full max-w-4xl"
       >
-        <div className="flex flex-wrap items-center justify-center gap-3 w-full">
-          {features.map((feature) => (
-            <Button
-              key={feature.name}
-              // className={`w-[251px] h-[45px] transition-colors duration-500 font-normal text-[16px] font-(family-name:--font-yekan-fanum)`}
-              className="w-[251px] h-[45px] px-[clamp(0.75rem,1vw,1.25rem)] py-[clamp(0.5rem,0.8vw,1rem)] text-[clamp(0.9rem,1.2vw,1.3rem)]
-                transition-colors duration-500 font-normal font-(family-name:--font-yekan-fanum)
-              "
-              variant={`${
-                activeFeature === feature.name ? "default" : "outline"
-              }`}
-              onClick={() => {
-                setActiveFeature(feature.name);
-              }}
-            >
-              {feature.btnText}
-            </Button>
-          ))}
-        </div>
-        <div>
-          {featureIcons.map((featureIcon) => (
-            <div key={featureIcon.name} className="flex">
-              {featureIcon.icons.map((icon, index) => (
-                <div
-                  key={index}
-                  className={`${
-                    activeFeature === featureIcon.name ? "flex" : "hidden"
-                  } flex-col items-center justify-center gap-3 w-48 h-[136px]`}
-                >
-                  <Image
-                    src={icon.icon}
-                    alt={`آیکون ${icon.text}`}
-                    width={98}
-                    height={98}
-                  />
-                  <span className="text-center"> {icon.text}</span>
-                </div>
-              ))}
-            </div>
-          ))}
+        {features.map((feature) => (
+          <Button
+            key={feature.name}
+            onClick={() => setActiveFeature(feature.name)}
+            variant={activeFeature === feature.name ? "default" : "outline"}
+            className="
+              h-[45px]
+              px-6
+              w-full sm:w-auto
+              text-[15px] sm:text-[16px]
+              font-normal
+              transition-colors duration-500
+              font-(family-name:--font-yekan-fanum)
+            "
+          >
+            {feature.btnText}
+          </Button>
+        ))}
+      </div>
+
+      {/* Icons */}
+      <div className="mt-12 w-full flex justify-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-10">
+          {featureIcons
+            .find((f) => f.name === activeFeature)
+            ?.icons.map((icon, index) => (
+              <div
+                key={index}
+                className="
+                  flex flex-col items-center justify-center
+                  gap-3
+                  w-[120px] sm:w-[140px] md:w-40
+                  text-center
+                "
+              >
+                <Image
+                  src={icon.icon}
+                  alt={`آیکون ${icon.text}`}
+                  width={98}
+                  height={98}
+                  className="w-[60px] sm:w-[70px] md:w-[90px] h-auto"
+                />
+                <span className="text-[13px] sm:text-[14px] md:text-[15px] leading-6">
+                  {icon.text}
+                </span>
+              </div>
+            ))}
         </div>
       </div>
     </div>
