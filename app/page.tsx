@@ -3,6 +3,7 @@ import { Introduction } from "@/components/introduction";
 import Navbar from "@/components/navbar";
 import Slider from "@/components/slider";
 import { Features } from "@/components/features";
+import { FAQ } from "@/components/faq";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         </div>
         <Slider />
         <Features />
+        <FAQ />
       </div>
     </div>
   );
