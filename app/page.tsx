@@ -5,10 +5,11 @@ import Slider from "@/components/slider";
 import { Features } from "@/components/features";
 import { FAQ } from "@/components/faq";
 import { FinalCTA } from "@/components/final-cta";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <div className="w-full pb-5">
+    <div className="w-full">
       {/* we don't need flex and flex-col because the divs are natuarlly block elements. */}
       <div className="relative h-auto w-full pb-28 bg-linear-to-r from-[#e2eefe] to-[#f8ceba]">
         <div className="pt-0 ss:pt-[23.5px]">
@@ -27,6 +28,7 @@ export default function Home() {
         <FAQ />
         <FinalCTA />
       </div>
+      <Footer />
     </div>
   );
 }
