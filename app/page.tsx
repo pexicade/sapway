@@ -4,6 +4,7 @@ import Navbar from "@/components/navbar";
 import Slider from "@/components/slider";
 import { Features } from "@/components/features";
 import { FAQ } from "@/components/faq";
+import { FinalCTA } from "@/components/final-cta";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <Slider />
         <Features />
         <FAQ />
+        <FinalCTA />
       </div>
     </div>
   );
