@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
-import { Customers } from "./customers";
 
 export const Hero = () => {
   return (
@@ -188,9 +187,9 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-      <div>
+      {/* <div>
         <Customers />
-      </div>
+      </div> */}
     </div>
   );
 };
